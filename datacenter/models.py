@@ -38,12 +38,12 @@ class Visit(models.Model):
             time_duration = localtime() - self.entered_at
         return time_duration.total_seconds()
 
-    def format_duration(self, duration):
-        hours = round(duration // 3600)
-        minutes = round((duration % 3600) // 60)
+    def format_duration(self, duration, unit_of_time=60):
+        hours = round(duration // unit_of_time**2)
+        minutes = round((duration % unit_of_time**2) // unit_of_time)
         return f" {hours}ч {minutes}м"
 
-    def is_visit_long(self, duration):
-        duration_time = round(duration // 60)
+    def is_visit_long(self, duration, unit_of_time=60):
+        duration_time = round(duration // unit_of_time)
         control_time = 10
         return not duration_time < control_time
