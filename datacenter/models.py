@@ -45,5 +45,5 @@ class Visit(models.Model):
 
     def is_visit_long(self, duration, unit_of_time=60):
         duration_time = round(duration // unit_of_time)
-        control_time = 10
+        control_time = 60
         return not duration_time < control_time
